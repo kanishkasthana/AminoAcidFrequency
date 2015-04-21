@@ -35,7 +35,7 @@ public class AminoAcidFrequency {
             List <String>proteinSequences=new <String>ArrayList();
             
             StringBuilder sequence=new StringBuilder();
-            System.out.println(inputs.get(0));
+          
             for(int i=0;i<inputs.size();i++){
                 if(inputs.get(i).charAt(0)=='>'){
                     
@@ -55,18 +55,44 @@ public class AminoAcidFrequency {
                 proteinSequences.add(sequence.toString());
             }
             
-            System.out.println(proteinNames.size());
-            System.out.println(proteinSequences.size());
+            String aminoAcids="ACDEFGHIKLMNPQRSTVWY";
+            System.out.println(aminoAcids.length());
             
-            for(int i=0;i<proteinNames.size();i++){
-                System.out.println(proteinNames.get(i));
-                System.out.println(proteinSequences.get(i));
+            for(int i=0;i<proteinSequences.size();i++){
+                String protein=proteinSequences.get(i);
+            
+                Map <Character,Double>AminoFrequencies=new <Character,Double> HashMap();
+                //Initializing HashMap
+                for(int j=0;j<aminoAcids.length();j++){
+                   AminoFrequencies.put(aminoAcids.charAt(j), 0.0);
+                }
+                
+                //Calculating Counts;
+                for(int k=0;k<protein.length();k++){
+                    Double oldValue=AminoFrequencies.get(protein.charAt(k));
+                    AminoFrequencies.put(protein.charAt(k), oldValue+1);
+                }
+                
+                //Calculating Frequencies
+                for(int k=0;k<aminoAcids.length();k++){
+                    Double newValue=AminoFrequencies.get(aminoAcids.charAt(k))/protein.length();
+                    //Rounding to two decimal places for output
+                    newValue=Math.round(newValue*1000.0)/1000.0;
+                    AminoFrequencies.put(aminoAcids.charAt(k), newValue);
+                    
+                }
+                
+                //Printing output                
+                out.print(proteinNames.get(i)+" ");                
+                for(int j=0;j<aminoAcids.length();j++){
+                    out.print(AminoFrequencies.get(aminoAcids.charAt(j)));
+                    out.print(" ");
+                }
+                //Line Break
+                if(i<proteinSequences.size()-1)
+                    out.println("");
             }
-            /*
-            System.out.println(proteinNames.get(10));
-            System.out.println(proteinNames.size());
-            System.out.println(proteinSequences.get(10));
-            */
+            
             
             out.close();
         }
