@@ -76,7 +76,7 @@ public class AminoAcidFrequency {
                 //Calculating Frequencies
                 for(int k=0;k<aminoAcids.length();k++){
                     Double newValue=AminoFrequencies.get(aminoAcids.charAt(k))/protein.length();
-                    //Rounding to two decimal places for output
+                    //Rounding to three decimal places for output
                     newValue=Math.round(newValue*1000.0)/1000.0;
                     AminoFrequencies.put(aminoAcids.charAt(k), newValue);
                     
