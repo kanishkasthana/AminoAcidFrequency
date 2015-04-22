@@ -78,21 +78,19 @@ public class AminoAcidFrequency {
                     Double newValue=AminoFrequencies.get(aminoAcids.charAt(k))/protein.length();
                     //Rounding to three decimal places for output
                     newValue=Math.round(newValue*1000.0)/1000.0;
-                    AminoFrequencies.put(aminoAcids.charAt(k), newValue);
-                    
+                    AminoFrequencies.put(aminoAcids.charAt(k), newValue);                    
                 }
                 
                 //Printing output                
-                out.print(proteinNames.get(i)+" ");                
+                out.print(proteinNames.get(i)+"\t");            
                 for(int j=0;j<aminoAcids.length();j++){
                     out.print(AminoFrequencies.get(aminoAcids.charAt(j)));
-                    out.print(" ");
+                    out.print("\t");
                 }
                 //Line Break
                 if(i<proteinSequences.size()-1)
                     out.println("");
             }
-            
             
             out.close();
         }
